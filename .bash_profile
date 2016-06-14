@@ -1,5 +1,7 @@
 source ~/.nvm
 
+export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
+
 export NVM_DIR="/Users/noyobo/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
@@ -14,6 +16,16 @@ function httpd-server() {
 }
 
 alias sv='httpd-server'
+
+# php server current directory
+
+function php-server() {
+  PORT=${1:-8000}
+  open "http://localhost:$PORT"
+  php -S 127.0.0.1:$PORT -t ./
+}
+
+alias pv='php-server'
 
 function tnpm-publish-patch(){
   git push origin $(git rev-parse --abbrev-ref HEAD)
