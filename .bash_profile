@@ -28,8 +28,9 @@ function php-server() {
 alias pv='php-server'
 
 function tnpm-publish-patch(){
+  VERSION=${1:-patch}
   git push origin $(git rev-parse --abbrev-ref HEAD)
-  git push origin $(tnpm version patch)
+  git push origin $(tnpm version $VERSION)
   tnpm publish
   git push origin $(git rev-parse --abbrev-ref HEAD)
 }
@@ -46,3 +47,4 @@ alias mcd='mkdcd'
 # git
 alias gcorig="git status | grep '.orig' | cut -d ' ' -f 2- | xargs rm -f"
 alias gbdd="git checkout master && git branch -l | sed 's/* master//' > /tmp/gitlocal.txt && git branch -r  | sed 's/origin\///' > /tmp/gitremote.txt && grep -Fxv -f /tmp/gitremote.txt /tmp/gitlocal.txt | xargs git branch -d"
+alias gnm="git merge --no-ff"
