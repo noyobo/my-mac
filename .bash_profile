@@ -59,7 +59,7 @@ function npm-publish-patch() {
   git changelog -a -t -p -x --tag now > History.md
   git add History.md
   git commit --amend --no-edit
-  # npm publish --tag ${TAG}
+  npm publish --tag ${TAG}
   git push --tags origin $(git rev-parse --abbrev-ref HEAD)
 }
 
